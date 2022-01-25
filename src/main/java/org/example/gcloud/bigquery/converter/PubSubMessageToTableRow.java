@@ -23,10 +23,10 @@ public class PubSubMessageToTableRow extends PTransform<PCollection<PubsubMessag
     private static final String TRANSFORM_NAME = "Convert PubSub Message to Table Row";
 
     /** The tag for the main output of the json transformation. */
-    public static final TupleTag<TableRow> TRANSFORM_OUT = new TupleTag<>();
+    public static final TupleTag<TableRow> TRANSFORM_OUT = new TupleTag<TableRow>();
 
     /** The additional tag for errors message while transformation */
-    public static final TupleTag<String> ERROR_MESSAGE = new TupleTag<>();
+    public static final TupleTag<String> ERROR_MESSAGE = new TupleTag<String>();
 
     public PubSubMessageToTableRow() {
         super(TRANSFORM_NAME);
