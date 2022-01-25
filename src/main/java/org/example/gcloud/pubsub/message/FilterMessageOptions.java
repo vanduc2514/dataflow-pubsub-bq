@@ -1,13 +1,14 @@
 package org.example.gcloud.pubsub.message;
 
 import org.apache.beam.sdk.options.Description;
+import org.apache.beam.sdk.options.PipelineOptions;
 import org.apache.beam.sdk.options.Validation;
 import org.apache.beam.sdk.options.ValueProvider;
 
 /**
  * Options for {@link FilterMessage}, which filter the PubSub Message
  */
-public interface FilterMessageOptions {
+public interface FilterMessageOptions extends PipelineOptions {
     @Description(
             "Filter events based on an optional attribute key. "
                     + "No filters are applied if a filterKey is not specified.")
