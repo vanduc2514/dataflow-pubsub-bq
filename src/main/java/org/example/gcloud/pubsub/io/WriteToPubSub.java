@@ -12,7 +12,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
  */
 public class WriteToPubSub extends PTransform<PCollection<PubsubMessage>, PDone> {
 
-    private static final String TRANSFORM_NAME = "Write To Big Query";
+    private static final String TRANSFORM_NAME = "Write To Pub Sub";
 
     private final PubsubIO.Write<PubsubMessage> writeTo;
 
