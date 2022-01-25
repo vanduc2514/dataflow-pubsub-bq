@@ -6,7 +6,7 @@ import org.apache.beam.sdk.options.*;
  * Options used for {@link WriteToPubSub}, which publish
  * to a Google Cloud Topic
  */
-public interface WriteToPubSubOptions {
+public interface WriteToPubSubOptions extends PipelineOptions {
 
     @Description(
             "The Cloud Pub/Sub topic to publish to. "

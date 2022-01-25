@@ -1,13 +1,14 @@
 package org.example.gcloud.bigquery.io;
 
 import org.apache.beam.sdk.options.Description;
+import org.apache.beam.sdk.options.PipelineOptions;
 import org.apache.beam.sdk.options.ValueProvider;
 
 /**
  * Options use for {@link WriteToBigQuery} transformation,
  * which write to a Google Cloud Big Query Table
  */
-public interface WriteToBigQueryOptions {
+public interface WriteToBigQueryOptions extends PipelineOptions {
 
     @Description("Table spec to write the output to. " +
             "The name should be in the format of " +

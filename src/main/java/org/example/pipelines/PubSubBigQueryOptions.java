@@ -10,5 +10,5 @@ import org.example.gcloud.pubsub.ReadAndFilterOptions;
  * Options supported by {@link PubSubBigQuery}
  */
 public interface PubSubBigQueryOptions extends ReadAndFilterOptions, WriteToPubSubOptions, WriteToBigQueryOptions,
-        PipelineOptions, StreamingOptions {
+        StreamingOptions {
 }

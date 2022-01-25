@@ -1,6 +1,7 @@
 package org.example.gcloud.pubsub.io;
 
 import org.apache.beam.sdk.options.Description;
+import org.apache.beam.sdk.options.PipelineOptions;
 import org.apache.beam.sdk.options.Validation;
 import org.apache.beam.sdk.options.ValueProvider;
 
@@ -8,7 +9,7 @@ import org.apache.beam.sdk.options.ValueProvider;
  * Options for {@link ReadFromPubSub}, which read PubSub Message
  * form a Google Cloud PubSub
  */
-public interface ReadFromPubSubOptions {
+public interface ReadFromPubSubOptions extends PipelineOptions {
     @Description(
             "The Cloud Pub/Sub subscription to consume from. "
                     + "The name should be in the format of "
