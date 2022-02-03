@@ -20,18 +20,17 @@ public class WriteToBigQuery<T> extends PTransform<PCollection<T>, WriteResult> 
 
     private final BigQueryIO.Write<T> writeTo;
 
-    public WriteToBigQuery(SerializableFunction<T, TableRow> formatFunction,
-                           WriteToBigQueryOptions options) {
+    public WriteToBigQuery(WriteToBigQueryOptions options,
+                           SerializableFunction<T, TableRow> formatFunction) {
         super(TRANSFORM_NAME);
         writeTo = BigQueryIO.<T>write()
+                .to(options.getOutputTableSpec())
+                .withFormatFunction(formatFunction)
                 .withoutValidation()
                 .withCreateDisposition(BigQueryIO.Write.CreateDisposition.CREATE_NEVER)
                 .withWriteDisposition(BigQueryIO.Write.WriteDisposition.WRITE_APPEND)
                 .withExtendedErrorInfo()
-                .withMethod(BigQueryIO.Write.Method.STREAMING_INSERTS)
-                .withFailedInsertRetryPolicy(InsertRetryPolicy.retryTransientErrors())
-                .withFormatFunction(formatFunction)
-                .to(options.getOutputTableSpec());
+                .withMethod(BigQueryIO.Write.Method.STREAMING_INSERTS);
     }
 
     @Override
