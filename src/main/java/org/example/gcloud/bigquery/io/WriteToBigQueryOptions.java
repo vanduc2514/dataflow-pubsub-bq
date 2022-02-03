@@ -5,7 +5,7 @@ import org.apache.beam.sdk.options.PipelineOptions;
 import org.apache.beam.sdk.options.ValueProvider;
 
 /**
- * Options use for {@link WriteToBigQuery} transformation,
+ * Options use for {@link WriteTableRowToBigQuery} transformation,
  * which write to a Google Cloud Big Query Table
  */
 public interface WriteToBigQueryOptions extends PipelineOptions {

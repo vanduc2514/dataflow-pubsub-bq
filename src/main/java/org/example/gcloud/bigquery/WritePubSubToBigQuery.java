@@ -7,7 +7,7 @@ import org.apache.beam.sdk.transforms.PTransform;
 import org.apache.beam.sdk.values.PCollection;
 import org.apache.beam.sdk.values.PCollectionTuple;
 import org.example.gcloud.bigquery.converter.PubSubMessageToTableRow;
-import org.example.gcloud.bigquery.io.WriteToBigQuery;
+import org.example.gcloud.bigquery.io.WriteTableRowToBigQuery;
 import org.example.gcloud.bigquery.io.WriteToBigQueryOptions;
 
 /**
@@ -24,12 +24,12 @@ public class WritePubSubToBigQuery extends PTransform<PCollection<PubsubMessage>
 
     private final PubSubMessageToTableRow convertPubSubToTableRow;
 
-    private final WriteToBigQuery writeToBigQuery;
+    private final WriteTableRowToBigQuery writeToBigQuery;
 
     public WritePubSubToBigQuery(WriteToBigQueryOptions options) {
         super(TRANSFORM_NAME);
         convertPubSubToTableRow = new PubSubMessageToTableRow();
-        writeToBigQuery = new WriteToBigQuery(options);
+        writeToBigQuery = new WriteTableRowToBigQuery(options);
     }
 
     @Override
