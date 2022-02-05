@@ -33,14 +33,10 @@ public class WritePubSubToBigQuery extends PTransform<PCollection<PubsubMessage>
         super(TRANSFORM_NAME);
         convertPubSubToTableRow = new PubSubMessageToTableRow();
         writeToBigQuery = new WriteTableRowToBigQuery(options);
-        latestWrite = new WriteToBigQuery<>(
-                options, message -> new TableRow()
-        );
     }
 
     @Override
     public WriteResult expand(PCollection<PubsubMessage> input) {
-        latestWrite.expand(input);
         // 1. Convert PubSub Message
         PCollectionTuple tableRowTuple = convertPubSubToTableRow.expand(input);
         // 2. Write to Big Query Table
