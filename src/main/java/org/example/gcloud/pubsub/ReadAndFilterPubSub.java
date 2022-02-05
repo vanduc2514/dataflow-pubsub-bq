@@ -5,7 +5,7 @@ import org.apache.beam.sdk.transforms.PTransform;
 import org.apache.beam.sdk.values.PBegin;
 import org.apache.beam.sdk.values.PCollection;
 import org.example.gcloud.pubsub.message.FilterMessage;
-import org.example.gcloud.pubsub.io.ReadFromPubSub;
+import org.example.gcloud.pubsub.io.ReadPubSubMessage;
 
 /**
  * Composite Transformation for reading and filter the messages from a Google Cloud Subscription
@@ -18,13 +18,13 @@ public class ReadAndFilterPubSub extends PTransform<PBegin, PCollection<PubsubMe
 
     private static final String TRANSFORM_NAME = "Read from PubSub then Filter";
 
-    private final ReadFromPubSub inputTransform;
+    private final ReadPubSubMessage inputTransform;
 
     private final FilterMessage filterTransform;
 
     public ReadAndFilterPubSub(ReadAndFilterOptions options) {
         super(TRANSFORM_NAME);
-        inputTransform = new ReadFromPubSub(options);
+        inputTransform = new ReadPubSubMessage(options);
         filterTransform = new FilterMessage(options);
     }
 

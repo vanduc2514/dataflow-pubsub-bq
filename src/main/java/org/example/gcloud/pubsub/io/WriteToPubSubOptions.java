@@ -3,7 +3,7 @@ package org.example.gcloud.pubsub.io;
 import org.apache.beam.sdk.options.*;
 
 /**
- * Options used for {@link WriteToPubSub}, which publish
+ * Options used for {@link WritePubSubMessage}, which publish
  * to a Google Cloud Topic
  */
 public interface WriteToPubSubOptions extends PipelineOptions {

@@ -6,7 +6,7 @@ import org.apache.beam.sdk.options.Validation;
 import org.apache.beam.sdk.options.ValueProvider;
 
 /**
- * Options for {@link ReadFromPubSub}, which read PubSub Message
+ * Options for {@link ReadPubSubMessage}, which read PubSub Message
  * form a Google Cloud PubSub
  */
 public interface ReadFromPubSubOptions extends PipelineOptions {

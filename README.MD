@@ -26,7 +26,7 @@ Export the required variable
 Execute the pipeline
 ```shell
     mvn compile exec:java \
-    -Dexec.mainClass=org.example.pipelines.PubSubBigQuery \
+    -Dexec.mainClass=org.example.pipelines.PubSubMessageBigQuery \
     -Dexec.cleanupDaemonThreads=false \
     -Dexec.args=" \
     --project=${PROJECT_ID} \

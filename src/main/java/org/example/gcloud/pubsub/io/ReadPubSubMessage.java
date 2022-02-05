@@ -8,18 +8,18 @@ import org.apache.beam.sdk.values.PCollection;
 
 /**
  * Read PubSub Message from a Google Pub Sub into a {@link PCollection<PubsubMessage>} by
- * {@link PubsubIO}
+ * {@link PubsubIO}.
  */
-public class ReadFromPubSub extends PTransform<PBegin, PCollection<PubsubMessage>> {
+public class ReadPubSubMessage extends PTransform<PBegin, PCollection<PubsubMessage>> {
 
-    private static final String TRANSFORM_NAME = "Read Message from a Google Pub Sub";
+    private static final String TRANSFORM_NAME = "Read PubSub Message from a Google Pub Sub";
 
     /** Begin to read PubSub Message using {@link PubsubIO} */
     private final PubsubIO.Read<PubsubMessage> readFrom;
 
-    public ReadFromPubSub(ReadFromPubSubOptions options) {
+    public ReadPubSubMessage(ReadFromPubSubOptions options) {
         super(TRANSFORM_NAME);
-        readFrom = PubsubIO.readMessagesWithAttributes()
+        readFrom = PubsubIO.readMessages()
                 .fromSubscription(options.getInputSubscription());
     }
 

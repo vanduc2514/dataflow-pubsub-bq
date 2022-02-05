@@ -4,13 +4,14 @@ import org.apache.beam.sdk.Pipeline;
 import org.apache.beam.sdk.io.gcp.pubsub.PubsubMessage;
 import org.apache.beam.sdk.options.PipelineOptionsFactory;
 import org.apache.beam.sdk.values.PCollection;
-import org.example.gcloud.bigquery.WritePubSubToBigQuery;
+import org.example.functions.FormatPubSubMessageToTableRowFn;
+import org.example.gcloud.bigquery.io.WriteToBigQuery;
 import org.example.gcloud.pubsub.ReadAndFilterPubSub;
-import org.example.gcloud.pubsub.io.WriteToPubSub;
+import org.example.gcloud.pubsub.io.WritePubSubMessage;
 
 /**
  * Pipeline for
- * 1. Filter Read from a PubSub
+ * 1. Filter Read Json Message from a PubSub
  * 2.1.p Parallel write to a BigQuery Table
  * 2.2.p Parallel write to another PubSub
  *
@@ -31,7 +32,7 @@ import org.example.gcloud.pubsub.io.WriteToPubSub;
  * --outputTableSpec=${PROJECT_ID}:${DATASET}.${TABLE_NAME} \
  * "
  */
-public class PubSubBigQuery {
+public class PubSubMessageBigQuery {
 
     /**
      * Main entry point for executing the pipeline.
@@ -41,9 +42,9 @@ public class PubSubBigQuery {
     public static void main(String[] args) {
 
         // Parse the user options passed from the command-line
-        PubSubBigQueryOptions options = PipelineOptionsFactory.fromArgs(args)
+        PubSubMessageBigQueryOptions options = PipelineOptionsFactory.fromArgs(args)
                 .withValidation()
-                .as(PubSubBigQueryOptions.class);
+                .as(PubSubMessageBigQueryOptions.class);
         // Set the pipeline to do streaming processing
         options.setStreaming(true);
 
@@ -56,9 +57,9 @@ public class PubSubBigQuery {
         // Branching PCollections to perform Parallel process
         // see https://beam.apache.org/documentation/pipelines/design-your-pipeline/
         // Parallel write PubSub message to BigQuery
-        receivedMessage.apply(new WritePubSubToBigQuery(options));
+        receivedMessage.apply(new WriteToBigQuery<>(options, new FormatPubSubMessageToTableRowFn()));
         // Parallel write PubSub message to another PubSub.
-        receivedMessage.apply(new WriteToPubSub(options));
+        receivedMessage.apply(new WritePubSubMessage(options));
 
         // Do execute the pipeline
         pipeline.run();

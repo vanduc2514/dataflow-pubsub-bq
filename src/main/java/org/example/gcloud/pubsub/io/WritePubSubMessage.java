@@ -10,13 +10,13 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 /**
  * Write Message to a Google Cloud PubSub Topic using {@link PubsubIO}
  */
-public class WriteToPubSub extends PTransform<PCollection<PubsubMessage>, PDone> {
+public class WritePubSubMessage extends PTransform<PCollection<PubsubMessage>, PDone> {
 
     private static final String TRANSFORM_NAME = "Write PubSub Message To Pub Sub";
 
     private final PubsubIO.Write<PubsubMessage> writeTo;
 
-    public WriteToPubSub(@NonNull WriteToPubSubOptions options) {
+    public WritePubSubMessage(@NonNull WriteToPubSubOptions options) {
         super(TRANSFORM_NAME);
         writeTo = PubsubIO.writeMessages().to(options.getOutputTopic());
     }
