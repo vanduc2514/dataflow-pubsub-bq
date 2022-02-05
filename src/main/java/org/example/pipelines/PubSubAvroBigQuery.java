@@ -31,6 +31,7 @@ import org.example.gcloud.pubsub.io.WritePubSubMessage;
  * --inputSubscription=projects/${PROJECT_ID}/subscriptions/${INPUT_SUBSCRIPTION_NAME} \
  * --outputTopic=projects/${PROJECT_ID}/topics/${OUTPUT_TOPIC_NAME} \
  * --outputTableSpec=${PROJECT_ID}:${DATASET}.${TABLE_NAME} \
+ * --avroSchema=${AVRO_SCHEMA_CONTENT} \
  * "
  */
 public class PubSubAvroBigQuery {

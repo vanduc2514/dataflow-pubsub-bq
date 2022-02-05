@@ -7,6 +7,7 @@ import org.apache.beam.sdk.io.gcp.bigquery.WriteResult;
 import org.apache.beam.sdk.transforms.PTransform;
 import org.apache.beam.sdk.values.PCollection;
 
+@Deprecated
 public class WriteTableRowToBigQuery extends PTransform<PCollection<TableRow>, WriteResult> {
 
     private static final String TRANSFORM_NAME = "Write To Big Query Table";
